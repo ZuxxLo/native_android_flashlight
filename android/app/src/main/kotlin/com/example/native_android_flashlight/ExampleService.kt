@@ -176,9 +176,14 @@ class ExampleService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent?.action == "STOP_SERVICE") {     val stopIntent = Intent("STOP_SENSOR_AND_FLASHLIGHT")
+
+        println("onStartCommand 1 ")
+        if (intent?.action == "STOP_SERVICE") {   
+                    println("onStartCommand 2 ")
+
+        val stopIntent = Intent("STOP_SENSOR_AND_FLASHLIGHT")
         sendBroadcast(stopIntent)
-            stopService()
+        stopService()
         }
         return super.onStartCommand(intent, flags, startId)
     }

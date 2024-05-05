@@ -93,17 +93,21 @@ import android.content.IntentFilter
             println("im clicked stooop")
             // Stop proximity sensor and flashlight
             // You can call the respective methods or set flags to stop them
-
+             
             stopProximitySensor()
         
             // Turn off flashlight
             turnOffFlashlight()
+
+ 
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // Unregister the receiver
+
+        println("on destroy main activity") 
         unregisterReceiver(stopReceiver)
     }
    
