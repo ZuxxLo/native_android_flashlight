@@ -49,7 +49,7 @@ class MainActivity : FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL_PROXIMITY_SENSOR)
             .setMethodCallHandler { call, result ->
                 if (call.method == "getProximityData") {
-                    result.success(proximityValue < 5f)
+                    result.success(isFlashlightOn)
                 } else {
                     result.notImplemented()
                 }
@@ -123,24 +123,26 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    private val proximitySensorEventListener = object : SensorEventListener {
-        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+ 
+private val proximitySensorEventListener = object : SensorEventListener {
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
 
-        override fun onSensorChanged(event: SensorEvent) {
-            proximityValue = event.values[0]
-            if (proximityValue < 5f) {
-                if (!isFlashlightOn) {
-                    turnOnFlashlight()
-                    isFlashlightOn = true
-                }
-            } else {
-                if (isFlashlightOn) {
-                    turnOffFlashlight()
-                    isFlashlightOn = false
-                }
-            }
+    override fun onSensorChanged(event: SensorEvent) {
+        proximityValue = event.values[0]
+        val isProximityLessThan5 = proximityValue < 5f
+
+        if (proximityValue< 5f && isFlashlightOn) {
+             turnOffFlashlight()
+                isFlashlightOn = false
+        } else if(proximityValue< 5f && !isFlashlightOn){
+                 // Proximity more than or equal to 5, turn off flashlight if it's on
+                turnOnFlashlight()
+                isFlashlightOn = true
+            
         }
     }
+}
+
 
      fun stopProximitySensor() {
 

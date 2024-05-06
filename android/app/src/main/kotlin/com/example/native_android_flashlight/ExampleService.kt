@@ -143,6 +143,9 @@ class ExampleService : Service() {
         } else {
             ""
         }
+
+           val notificationIntent = Intent(this, MainActivity::class.java)
+    val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
         builder = NotificationCompat.Builder(this, channelId)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
@@ -150,6 +153,7 @@ class ExampleService : Service() {
             .setContentTitle("Service is running")
             .setContentText("Tap to start/stop the torch")
             .setCategory(Notification.CATEGORY_SERVICE)
+               .setContentIntent(pendingIntent)
             .addAction(android.R.drawable.ic_media_pause, "Stop", stopPendingIntent())
         startForeground(notificationId, builder.build())
     }
