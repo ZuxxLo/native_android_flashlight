@@ -1,13 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.hardware.sensor.proximity" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:label="native_android_flashlight"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -35,8 +36,11 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <service android:name=".ExampleService" />
-        <!-- <service android:name=".FlashlightService" /> -->
 
-
+        <receiver android:name=".StopReceiver" android:exported="false" >
+            <intent-filter>
+                <action android:name="com.example.native_android_flashlight.STOP_SENSOR_AND_FLASHLIGHT" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

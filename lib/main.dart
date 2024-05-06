@@ -109,7 +109,7 @@ class _ProximityWidgetState extends State<ProximityWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isNear ? Color.fromRGBO(58, 58, 58, 1) : Colors.white,
+      backgroundColor: isNear ? Color.fromRGBO (58, 58, 58, 1) : Colors.white,
       appBar: AppBar(
         backgroundColor: isNear ? Color.fromRGBO(97, 97, 97, 1) : Colors.white,
        ),
