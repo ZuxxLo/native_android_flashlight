@@ -48,14 +48,14 @@ class ProximityWidget extends StatefulWidget {
 class _ProximityWidgetState extends State<ProximityWidget> {
   static const proxPlateform =
       MethodChannel("samples.flutter.dev/proximitysensor");
-  static const platform =   MethodChannel('example_service');
+  static const platform = MethodChannel('example_service');
   String _serverState = 'Did not make the call yet';
 
   late StreamSubscription _proximitySubscription;
   bool isNear = false;
   Future<void> _startService() async {
     try {
-      final result = await platform.invokeMethod('startExampleService');
+      final result = await platform.invokeMethod('StartService');
       setState(() {
         _serverState = result;
       });
@@ -66,7 +66,7 @@ class _ProximityWidgetState extends State<ProximityWidget> {
 
   Future<void> _stopService() async {
     try {
-      final result = await platform.invokeMethod('stopExampleService');
+      final result = await platform.invokeMethod('StopService');
       setState(() {
         _serverState = result;
       });
@@ -99,8 +99,7 @@ class _ProximityWidgetState extends State<ProximityWidget> {
         final bool result =
             await proxPlateform.invokeMethod('getisFlashlightState');
         yield result; // Yield the received proximity data
-        // await Future.delayed(Duration(seconds: 1)); // Delay between each check
-       }
+      }
     } on PlatformException catch (e) {
       print("Failed to get proximity data: '${e.message}'.");
       // Handle error
@@ -110,27 +109,24 @@ class _ProximityWidgetState extends State<ProximityWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isNear ? Color.fromRGBO (58, 58, 58, 1) : Colors.white,
+      backgroundColor: isNear ? const Color.fromRGBO(58, 58, 58, 1) : Colors.white,
       appBar: AppBar(
-        backgroundColor: isNear ? Color.fromRGBO(97, 97, 97, 1) : Colors.white,
-       ),
+        backgroundColor: isNear ? const Color.fromRGBO(97, 97, 97, 1) : Colors.white,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 50),
-
+            const SizedBox(height: 50),
             ElevatedButton(
-              child: Text('Start Service'),
+              child: const Text('Start Service'),
               onPressed: _startService,
             ),
             ElevatedButton(
-              child: Text('Stop Service'),
+              child: const Text('Stop Service'),
               onPressed: _stopService,
             ),
-            SizedBox(height: 50),
-
-      
+            const SizedBox(height: 50),
             Container(
               height: 250,
               width: 250,
@@ -138,8 +134,7 @@ class _ProximityWidgetState extends State<ProximityWidget> {
                   ? 'assets/flashlight_on.png'
                   : 'assets/flashlight_off.png'),
             ),
-
-            // Text(_serverState),
+            Text(_serverState),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 package com.example.native_android_flashlight
 
- import androidx.annotation.NonNull
+import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -37,9 +37,9 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
- import android.graphics.Color
- import androidx.core.app.NotificationCompat
- import androidx.core.app.NotificationManagerCompat
+import android.graphics.Color
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
  
 
 class ProxFlashService : Service() {
