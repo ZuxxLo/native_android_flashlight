@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -47,7 +48,7 @@ class ProximityWidget extends StatefulWidget {
 class _ProximityWidgetState extends State<ProximityWidget> {
   static const proxPlateform =
       MethodChannel("samples.flutter.dev/proximitysensor");
-  static const platform = const MethodChannel('example_service');
+  static const platform =   MethodChannel('example_service');
   String _serverState = 'Did not make the call yet';
 
   late StreamSubscription _proximitySubscription;
@@ -96,7 +97,7 @@ class _ProximityWidgetState extends State<ProximityWidget> {
     try {
       while (true) {
         final bool result =
-            await proxPlateform.invokeMethod('getProximityData');
+            await proxPlateform.invokeMethod('getisFlashlightState');
         yield result; // Yield the received proximity data
         // await Future.delayed(Duration(seconds: 1)); // Delay between each check
        }
@@ -129,15 +130,7 @@ class _ProximityWidgetState extends State<ProximityWidget> {
             ),
             SizedBox(height: 50),
 
-            Text(
-              'Object is:',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 10),
-            Text(
-              isNear ? 'Near' : 'Away',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
+      
             Container(
               height: 250,
               width: 250,

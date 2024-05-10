@@ -35,12 +35,12 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <service android:name=".ExampleService" />
+         <service android:name=".ProxFlashService" />
 
-        <receiver android:name=".StopReceiver" android:exported="false" >
+        <!-- <receiver android:name=".StopReceiver" android:exported="false" >
             <intent-filter>
                 <action android:name="com.example.native_android_flashlight.STOP_SENSOR_AND_FLASHLIGHT" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
     </application>
 </manifest>
