@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -14,7 +15,7 @@ class MainActivity : FlutterActivity() {
     private val CHANNEL_PROXIMITY_SENSOR = "samples.flutter.dev/proximitysensor"
     private val CHANNEL = "example_service"
 
-    override fun configureFlutterEngine(@NonNulFl flutterEngine: FlutterEngine) {
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
 
         super.configureFlutterEngine(flutterEngine)
 
